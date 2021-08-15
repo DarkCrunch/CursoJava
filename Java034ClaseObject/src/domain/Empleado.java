@@ -1,0 +1,77 @@
+package domain;
+
+import java.util.Objects;
+
+public class Empleado {
+
+    //Atributos
+    private String nombre;
+    private double sueldo;
+
+    //Constructores
+    public Empleado(String nombre, double sueldo) {
+        setNombre(nombre);
+        setSueldo(sueldo);
+    }
+
+    //Encapsulamiento
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public double getSueldo() {
+        return sueldo;
+    }
+
+    public void setSueldo(double sueldo) {
+        this.sueldo = sueldo;
+    }
+
+    //Metodos
+    public String obtenerDetalles() {
+        return "Nombre: " + this.getNombre() 
+                + ", Sueldo: " + this.getSueldo();
+    }
+
+    @Override
+    public String toString() {
+        return "Empleado{" 
+                + "nombre=" + this.getNombre() 
+                + ", sueldo=" + this.getSueldo() 
+                + '}';
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 29 * hash + Objects.hashCode(this.nombre);
+        hash = 29 * hash + (int) (Double.doubleToLongBits(this.sueldo) ^ (Double.doubleToLongBits(this.sueldo) >>> 32));
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Empleado other = (Empleado) obj;
+        if (Double.doubleToLongBits(this.sueldo) != Double.doubleToLongBits(other.sueldo)) {
+            return false;
+        }
+        if (!Objects.equals(this.nombre, other.nombre)) {
+            return false;
+        }
+        return true;
+    }
+    
+}
